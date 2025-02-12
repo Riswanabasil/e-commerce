@@ -1,17 +1,17 @@
 import multer from "multer";
 import path from "path";
 
-// Set Storage Engine (Uploads in "uploads/" folder)
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Save files in "uploads" folder
+    cb(null, "uploads/"); 
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`); // Unique filename
+    cb(null, `${Date.now()}-${file.originalname}`); 
   },
 });
 
-// File Type Validation
+
 const fileFilter = (req, file, cb) => {
   const fileTypes = /jpeg|jpg|png/;
   const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
@@ -24,11 +24,11 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Multer Upload Middleware
+
 const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 }, // Limit file size to 5MB
+  limits: { fileSize: 5 * 1024 * 1024 }, 
 });
 
 export { upload };
