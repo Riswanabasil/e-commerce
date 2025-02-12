@@ -22,7 +22,9 @@ connectDB()
 
 app.use("/api/admin", adminRoutes)
 app.use("/api/products", productRoutes)
-app.use("/uploads", express.static(path.join("uploads")))
+// app.use("/uploads", express.static(path.join("uploads")))
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 app.get("/", (req, res) => {
     res.send("API is running...");
   })
